@@ -8,27 +8,19 @@ namespace MauiLoginApp.Services
 {
     public class ApiService
     {
-        private const string ApiUrl = "https://reqres.in/api/login"; // Testowe API
-
         public async Task<string> LoginAsync(string email, string password)
         {
-            using HttpClient client = new HttpClient();
+            // Symulacja opóźnienia połączenia z API
+            await Task.Delay(1000);
 
-            var payload = new { email, password };
-            var jsonPayload = JsonConvert.SerializeObject(payload); // Serializacja JSON
-            var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync(ApiUrl, content);
-            string responseText = await response.Content.ReadAsStringAsync();
-
-            Console.WriteLine($"📡 API Response: {responseText}"); // 🔍 Debugowanie odpowiedzi
-
-            if (response.IsSuccessStatusCode)
+            // Sprawdź, czy dane logowania są poprawne
+            if (email == "maks.kr@teb.com" && password == "tebubikacja")
             {
-                var result = JsonConvert.DeserializeObject<TokenResponse>(responseText);
-                return result?.Token;
+                // Zwróć symulowany token
+                return "1234567goatmakskrupski";
             }
 
+            // Jeśli dane logowania są nieprawidłowe, zwróć null
             return null;
         }
     }

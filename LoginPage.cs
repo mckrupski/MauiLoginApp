@@ -49,7 +49,7 @@ namespace MauiLoginApp.Pages
             }
             else
             {
-                await DisplayAlert("Błąd", "Nieprawidłowe dane logowania lub problem z API", "OK");
+                await DisplayAlert("Błąd", "Nieprawidłowe dane logowania", "OK");
             }
         }
     }
